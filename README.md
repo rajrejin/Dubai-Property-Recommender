@@ -15,41 +15,37 @@ This application provides data-driven investment recommendations for Dubai's pro
 
 ## ✨ Key Features
 
-### 🤖 Advanced ML Scoring Engine
-- **XGBoost Price Prediction** — property valuation models  
-- **LightGBM Investment Probability** — investment potential assessment  
+### 🤖 ML-Powered Investment Scoring
+- **XGBoost Price Prediction** — accurate property valuation models  
+- **LightGBM Investment Classification** — investment potential assessment  
 - **Isolation Forest Anomaly Detection** — identifies unusual market opportunities  
-- **Ensemble Scoring** — combined investment scores for ranking
+- **Ensemble Scoring** — combined investment scores with fallback heuristic method
 
-> Note: classifier performance was observed on representative training splits during evaluation; exact results are shown live in the app after training.
+### 🎛️ Interactive Dashboard
+- **4-Tab Interface:** Recommendations, Market Analysis, Top Picks, Area Performance
+- **Smart Filtering:** Area, property type, budget range, and investment score thresholds
+- **Investment Preferences:** Customizable horizon (1-2, 3-5, 5+ years) and risk tolerance
+- **Interactive Visualizations:** Plotly charts with scatter plots, histograms, and area comparisons
 
-### 📊 Intelligent Analytics
-- Many engineered features capturing developer reputation, location premiums, and market velocity  
-- Quality data filtering to keep only actionable properties with complete information  
-- Area performance insights and risk classification
-
-### 🎨 Interactive Dashboard
-- Multi-tab interface: Recommendations, Area Analysis, Charts  
-- Real-time filtering by area, property type, budget, and score thresholds  
-- Interactive Plotly visualizations and CSV export for filtered results
-
-### 🔍 Smart Filtering System
-- Geographic filtering with high-quality areas only  
-- Property type filtering (apartments, villas, offices, shops, etc.)  
-- Customizable budget and score-based thresholds
+### 📊 Advanced Analytics
+- **Feature Engineering:** 20+ metrics including developer reputation, location premiums, market velocity
+- **Quality Filtering:** Only properties with complete data and sufficient transaction history
+- **Risk Assessment:** Automated labeling based on ML predictions and market indicators
 
 ## 🎬 Demo
 
 Watch the application in action! The demo video showcases all the key features including the ML-powered recommendations, interactive dashboard, and filtering capabilities.
 
-📹 **[View Demo Video](./demo/Property%20Reccomender%20Demo.mp4)**
+📹 **[Download Demo Video](https://github.com/rajrejin/Dubai-Property-Recommender/raw/main/demo/Property%20Reccomender%20Demo.mp4)**
 
-The demo covers:
-- Setting up and launching the application
-- Exploring the recommendation engine
-- Using the interactive filtering system
-- Analyzing area performance metrics
-- Exporting investment recommendations
+The demo showcases:
+- AI-powered investment scoring using XGBoost, LightGBM, and Isolation Forest models
+- Interactive property filtering by area, type, budget range, and investment score
+- Multi-tab dashboard with Recommendations, Market Analysis, Top Picks, and Area Performance
+- Real-time investment score calculations with risk assessment labels
+- Plotly visualizations including scatter plots, histograms, and area performance charts
+- Personalized recommendations based on investment horizon and risk tolerance
+- CSV export functionality for filtered investment opportunities
 
 ## 📁 Project Structure
 
@@ -70,15 +66,15 @@ Dubai-Property-Recommender/
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Python and a modern web browser  
-- Sufficient RAM and disk space to work with the official dataset
+- Python 3.7+ and a modern web browser
+- 4GB+ RAM for dataset processing
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd "Dubai-Property-Recommender"
+   git clone https://github.com/rajrejin/Dubai-Property-Recommender.git
+   cd Dubai-Property-Recommender
    ```
 
 2. **Install dependencies**
@@ -87,9 +83,8 @@ Dubai-Property-Recommender/
    ```
 
 3. **Download the dataset**
-   - Get the official dataset from Dubai Pulse: [Dubai Pulse - DLD Transactions](https://www.dubaipulse.gov.ae/data/dld-transactions/dld_transactions-open)  
-   - Save the CSV as `data/Transactions.csv` in this project folder.  
-   - The app will load the full CSV for analytics and automatically use a representative sample for any in-app model training.
+   - Get the official dataset from [Dubai Pulse - DLD Transactions](https://www.dubaipulse.gov.ae/data/dld-transactions/dld_transactions-open)
+   - Save as `data/Transactions.csv` in the project folder
 
 4. **Run the application**
    ```bash
@@ -97,54 +92,27 @@ Dubai-Property-Recommender/
    ```
 
 5. **Access the dashboard**
-   - Open your browser to the local Streamlit address and wait for initial processing. Model training, if run, performs training on a representative sample and will display the observed metrics in the UI.
+   - Open your browser to the displayed local address (typically http://localhost:8501)
+   - Wait for initial data processing and model training (1-2 minutes)
 
 ## 📊 Data Source
 
-The application uses official Dubai Land Department transaction data sourced from **Dubai Pulse**, the open data platform of the Dubai Government.
+**Dubai Land Department** transaction data from [Dubai Pulse](https://www.dubaipulse.gov.ae/data/dld-transactions/dld_transactions-open) — the official open data platform of Dubai Government.
 
-- **Data Portal**: Dubai Pulse (DLD Transactions)  
-- **File Name**: `Transactions.csv` (updated regularly on the portal)  
-- The code uses the full dataset for area-level analytics and a representative sample for in-app training.
-
-### Key Data Attributes Used
-- Property details: type, sub-type, area, project name  
-- Transaction info: date, price, area size, price per square meter  
-- Location info: area name, nearest metro, nearest mall  
-- Developer info: project details and registration type
+**Key Attributes:** Property details, transaction history, location data, developer information, and proximity to amenities (metro, malls).
 
 ## 🔧 Technical Architecture
 
-### Machine Learning Pipeline
-1. **Data Preprocessing**
-   - Quality filtering, outlier handling, and feature engineering
-
-2. **Model Training**
-   - XGBoost for price regression  
-   - LightGBM for investment classification  
-   - Isolation Forest for anomaly detection  
-   - Training is performed on a representative sample in-app; the code falls back to a heuristic scoring method if ML libraries are absent
-
-3. **Feature Engineering**
-   - Area-level market intelligence, developer reputation metrics, location premiums, market velocity, and price efficiency ratios
+### Data Processing Pipeline
+1. **Data Loading & Cleaning** — Dubai Pulse CSV processing with quality filters
+2. **Feature Engineering** — 20+ metrics including time-based, area-level, and developer features
+3. **ML Training** — XGBoost, LightGBM, Isolation Forest on representative samples
+4. **Scoring & Ranking** — Ensemble ML scoring with heuristic fallback
 
 ### Performance & Observability
-- Exact model metrics vary by run and hardware. The app displays observed training metrics after in-app training so users see reproducible, run-specific numbers.
-
-## 🎛️ Application Features
-
-### Recommendations Tab
-- Top-ranked properties by model or heuristic score  
-- Property detail table, risk labels, and export functionality
-
-### Area Performance Tab
-- Market performance by area and transaction volume analysis
-
-### Interactive Charts
-- Investment score scatter plots, price relationships, and volatility visualizations
-
-### Sidebar Controls
-- Area selection, property types, budget slider, and minimum score filter
+- Model training uses representative samples (up to 30K properties from top 50 areas)
+- Live metrics displayed during training for transparency
+- Graceful fallback to heuristic scoring if ML libraries unavailable
 
 ## 💡 Investment Methodology
 
@@ -171,13 +139,12 @@ Customize `filter_properties()` to introduce new attributes, budget logic, or cu
 
 ## 📋 Requirements
 
-### System Requirements
-- Cross-platform (Windows, macOS, Linux)  
-- Python 3 and relevant packages installed  
-- Adequate RAM and disk space for dataset processing
+- **Python 3.7+** with standard data science libraries
+- **Core Dependencies:** streamlit, pandas, numpy, plotly
+- **ML Libraries (Optional):** xgboost, lightgbm, scikit-learn
+- **System:** 4GB+ RAM recommended for dataset processing
 
-### Python Dependencies
-See `requirements.txt` for required packages. ML libraries are optional for full functionality; the app will run without them using the heuristic fallback.
+> **Note:** ML libraries are optional - the app includes a sophisticated heuristic fallback that provides similar functionality without ML dependencies.
 
 ## 🚨 Troubleshooting
 
@@ -212,4 +179,4 @@ This project is for educational and research purposes. Underlying data is provid
 
 **Built with ❤️ for Dubai's Real Estate Investment Community**
 
-*Last Updated: August 2025*
+*Last Updated: September 2025*
