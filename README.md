@@ -38,6 +38,19 @@ This application provides data-driven investment recommendations for Dubai's pro
 - Property type filtering (apartments, villas, offices, shops, etc.)  
 - Customizable budget and score-based thresholds
 
+## 🎬 Demo
+
+Watch the application in action! The demo video showcases all the key features including the ML-powered recommendations, interactive dashboard, and filtering capabilities.
+
+📹 **[View Demo Video](./demo/Property%20Reccomender%20Demo.mp4)**
+
+The demo covers:
+- Setting up and launching the application
+- Exploring the recommendation engine
+- Using the interactive filtering system
+- Analyzing area performance metrics
+- Exporting investment recommendations
+
 ## 📁 Project Structure
 
 ```
@@ -45,7 +58,10 @@ Dubai-Property-Recommender/
 ├── property_recommender_app.py    # Main Streamlit application
 ├── data/
 │   └── Transactions.csv           # Downloaded dataset (from Dubai Pulse; large — keep out of repo)
+├── demo/
+│   └── Property Reccomender Demo.mp4  # Application demo video
 ├── requirements.txt               # Python dependencies
+├── LICENSE                        # Project license
 └── README.md                      # This file
 ```
 
